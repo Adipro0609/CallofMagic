@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Call of Magic</title>
 
-<!-- GOOGLE LOGIN SDK -->
-<script src="https://accounts.google.com/gsi/client"
-async defer></script>
+<!-- Google Sign In -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <style>
 
@@ -37,30 +35,19 @@ body{
 
 .container{
     width:340px;
-
     background:rgba(15,23,42,0.96);
-
     padding:30px;
-
     border-radius:25px;
-
-    box-shadow:
-    0 0 30px rgba(0,0,0,0.6);
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
 }
 
 .title{
     text-align:center;
-
     font-size:34px;
-
     font-weight:bold;
-
     margin-bottom:25px;
-
     color:#c084fc;
-
-    text-shadow:
-    0 0 15px rgba(192,132,252,0.7);
+    text-shadow:0 0 15px rgba(192,132,252,0.7);
 }
 
 .form-box{
@@ -73,35 +60,24 @@ body{
 
 input{
     width:100%;
-
     padding:14px;
-
     margin-bottom:15px;
-
     border:none;
-
     border-radius:14px;
-
     background:#1e293b;
-
     color:white;
-
     font-size:15px;
 }
 
 input:focus{
     outline:none;
-
     border:2px solid #a855f7;
 }
 
 .login-btn{
     width:100%;
-
     padding:14px;
-
     border:none;
-
     border-radius:14px;
 
     background:
@@ -110,13 +86,9 @@ input:focus{
     #a855f7);
 
     color:white;
-
     font-size:16px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:0.3s;
 }
 
@@ -124,65 +96,26 @@ input:focus{
     transform:scale(1.02);
 }
 
-.switch{
-    text-align:center;
-
-    margin-top:18px;
-
-    color:#cbd5e1;
-}
-
-.switch span{
-    color:#c084fc;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-.message{
-    margin-top:18px;
-
-    text-align:center;
-
-    color:#22c55e;
-}
-
 .or{
     text-align:center;
-
     margin:18px 0;
-
     color:#94a3b8;
 }
 
-/* GOOGLE BUTTON */
-
 .google-btn{
     width:100%;
-
     padding:14px;
-
     border:none;
-
     border-radius:14px;
-
     background:white;
-
     color:#111827;
-
     font-size:16px;
-
     font-weight:bold;
-
     cursor:pointer;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:12px;
 
     transition:0.3s;
@@ -195,6 +128,25 @@ input:focus{
 .google-logo{
     width:22px;
     height:22px;
+}
+
+.switch{
+    text-align:center;
+    margin-top:18px;
+    color:#cbd5e1;
+}
+
+.switch span{
+    color:#c084fc;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.message{
+    margin-top:18px;
+    text-align:center;
+    font-weight:bold;
+    min-height:24px;
 }
 
 </style>
@@ -210,72 +162,45 @@ input:focus{
 
     <!-- LOGIN -->
 
-    <div class="form-box active"
-    id="loginForm">
+    <div class="form-box active" id="loginForm">
 
-        <input type="text"
+        <input
+        type="text"
         id="loginUser"
         placeholder="Username">
 
-        <input type="password"
+        <input
+        type="password"
         id="loginPass"
         placeholder="Password">
 
-        <button class="login-btn"
+        <button
+        class="login-btn"
         onclick="login()">
-
             Login
-
         </button>
 
         <div class="or">OR</div>
 
-        <!-- GOOGLE BUTTON -->
-
-        <button class="google-btn"
+        <button
+        class="google-btn"
         onclick="googleLogin()">
-
-            <!-- GOOGLE SVG -->
 
             <svg class="google-logo"
             viewBox="0 0 48 48">
 
                 <path fill="#FFC107"
-                d="M43.6 20.5H42V20H24v8h11.3
-                C33.7 32.7 29.3 36 24 36
-                c-6.6 0-12-5.4-12-12
-                s5.4-12 12-12
-                c3 0 5.7 1.1 7.8 3
-                l5.7-5.7
-                C34.1 6.1 29.3 4 24 4
-                12.9 4 4 12.9 4 24
-                s8.9 20 20 20
-                20-8.9 20-20
-                c0-1.3-.1-2.4-.4-3.5z"/>
+                d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
 
                 <path fill="#FF3D00"
-                d="M6.3 14.7l6.6 4.8
-                C14.7 16 19 12 24 12
-                c3 0 5.7 1.1 7.8 3
-                l5.7-5.7
-                C34.1 6.1 29.3 4 24 4
-                16.3 4 9.7 8.3 6.3 14.7z"/>
+                d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
 
                 <path fill="#4CAF50"
-                d="M24 44
-                c5.2 0 10-2 13.5-5.2
-                l-6.2-5.2
-                c-2.1 1.5-4.7 2.4-7.3 2.4
-                -5.3 0-9.8-3.3-11.4-8
-                l-6.5 5
-                C9.5 39.5 16.2 44 24 44z"/>
+                d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.2c-2.1 1.5-4.7 2.4-7.3 2.4-5.3 0-9.8-3.3-11.4-8l-6.5 5C9.5 39.5 16.2 44 24 44z"/>
 
                 <path fill="#1976D2"
-                d="M43.6 20.5H42V20H24v8h11.3
-                c-1.1 3-3.1 5.4-5.8 7
-                l6.2 5.2
-                C39.2 36.7 44 31 44 24
-                c0-1.3-.1-2.4-.4-3.5z"/>
+                d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.1 5.4-5.8 7l6.2 5.2C39.2 36.7 44 31 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+
             </svg>
 
             Log in with Google
@@ -283,174 +208,240 @@ input:focus{
         </button>
 
         <div class="switch">
-
             No account?
-
             <span onclick="showRegister()">
-
                 Register
-
             </span>
-
         </div>
 
     </div>
 
     <!-- REGISTER -->
 
-    <div class="form-box"
-    id="registerForm">
+    <div class="form-box" id="registerForm">
 
-        <input type="text"
+        <input
+        type="text"
         id="registerUser"
         placeholder="Create Username">
 
-        <input type="password"
+        <input
+        type="password"
         id="registerPass"
         placeholder="Create Password">
 
-        <button class="login-btn"
+        <button
+        class="login-btn"
         onclick="register()">
-
             Register
-
         </button>
 
         <div class="switch">
-
             Already have an account?
-
             <span onclick="showLogin()">
-
                 Login
-
             </span>
-
         </div>
 
     </div>
 
-    <div class="message"
-    id="message"></div>
+    <div class="message" id="message"></div>
 
 </div>
 
 <script>
 
-/* GOOGLE INIT */
-
+// Google setup
 window.onload = function(){
 
-    google.accounts.id.initialize({
+    if(window.google){
 
-        client_id:
-        "YOUR_GOOGLE_CLIENT_ID",
-
-        callback:
-        handleCredentialResponse
-    });
+        google.accounts.id.initialize({
+            client_id: "YOUR_GOOGLE_CLIENT_ID",
+            callback: handleCredentialResponse
+        });
+    }
 };
 
-/* GOOGLE BUTTON CLICK */
-
+// Google login
 function googleLogin(){
 
-    google.accounts.id.prompt();
-}
+    if(window.google){
 
-/* GOOGLE SUCCESS */
+        google.accounts.id.prompt();
+
+    }else{
+
+        showMessage(
+            "Google SDK not loaded",
+            "#ef4444"
+        );
+    }
+}
 
 function handleCredentialResponse(response){
 
-    document.getElementById("message")
-    .innerText =
-    "Google Login Successful!";
+    sessionStorage.setItem(
+        "googleToken",
+        response.credential
+    );
 
-    console.log(response);
+    showMessage(
+        "Google Login Successful!",
+        "#22c55e"
+    );
 
-    // TOKEN:
-    console.log(response.credential);
+    setTimeout(function(){
+
+        window.location.href =
+        "home.html";
+
+    },1000);
 }
 
-/* SWITCH FORMS */
-
+// Form switching
 function showRegister(){
 
-    document.getElementById("loginForm")
+    document
+    .getElementById("loginForm")
     .classList.remove("active");
 
-    document.getElementById("registerForm")
+    document
+    .getElementById("registerForm")
     .classList.add("active");
+
+    clearMessage();
 }
 
 function showLogin(){
 
-    document.getElementById("registerForm")
+    document
+    .getElementById("registerForm")
     .classList.remove("active");
 
-    document.getElementById("loginForm")
+    document
+    .getElementById("loginForm")
     .classList.add("active");
+
+    clearMessage();
 }
 
-/* REGISTER */
-
+// Register
 function register(){
 
     let user =
-    document.getElementById("registerUser").value;
+    document.getElementById(
+    "registerUser").value.trim();
 
     let pass =
-    document.getElementById("registerPass").value;
+    document.getElementById(
+    "registerPass").value;
 
-    if(user === "" || pass === ""){
+    if(user.length < 3){
 
-        document.getElementById("message")
-        .innerText =
-        "Please fill all fields";
-
+        showMessage(
+            "Username must be at least 3 characters",
+            "#ef4444"
+        );
         return;
     }
 
-    localStorage.setItem("username", user);
+    if(pass.length < 8){
 
-    localStorage.setItem("password", pass);
+        showMessage(
+            "Password must be at least 8 characters",
+            "#ef4444"
+        );
+        return;
+    }
 
-    document.getElementById("message")
-    .innerText =
-    "Registration successful!";
+    localStorage.setItem(
+        "username",
+        user
+    );
 
-    showLogin();
+    localStorage.setItem(
+        "password",
+        pass
+    );
+
+    showMessage(
+        "Registration Successful!",
+        "#22c55e"
+    );
+
+    setTimeout(showLogin,1000);
 }
 
-/* LOGIN */
-
+// Login
 function login(){
 
     let user =
-    document.getElementById("loginUser").value;
+    document.getElementById(
+    "loginUser").value.trim();
 
     let pass =
-    document.getElementById("loginPass").value;
+    document.getElementById(
+    "loginPass").value;
 
     let savedUser =
-    localStorage.getItem("username");
+    localStorage.getItem(
+    "username"
+    );
 
     let savedPass =
-    localStorage.getItem("password");
+    localStorage.getItem(
+    "password"
+    );
 
-    if(user === savedUser &&
-       pass === savedPass){
+    if(
+        user === savedUser &&
+        pass === savedPass
+    ){
 
-        document.getElementById("message")
-        .innerText =
-        "Login successful!";
+        sessionStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+        showMessage(
+            "Login Successful!",
+            "#22c55e"
+        );
+
+        setTimeout(function(){
+
+            window.location.href =
+            "home.html";
+
+        },1000);
 
     }else{
 
-        document.getElementById("message")
-        .innerText =
-        "Wrong username or password";
+        showMessage(
+            "Wrong Username or Password",
+            "#ef4444"
+        );
     }
+}
+
+// Helpers
+function showMessage(text,color){
+
+    let msg =
+    document.getElementById(
+    "message"
+    );
+
+    msg.innerText = text;
+    msg.style.color = color;
+}
+
+function clearMessage(){
+
+    document.getElementById(
+    "message"
+    ).innerText = "";
 }
 
 </script>

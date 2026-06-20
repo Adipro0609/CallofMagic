@@ -6,7 +6,6 @@
 
 <title>Call of Magic</title>
 
-<!-- Google Sign In -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <style>
@@ -19,7 +18,7 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -79,12 +78,7 @@ input:focus{
     padding:14px;
     border:none;
     border-radius:14px;
-
-    background:
-    linear-gradient(to right,
-    #7c3aed,
-    #a855f7);
-
+    background:linear-gradient(to right,#7c3aed,#a855f7);
     color:white;
     font-size:16px;
     font-weight:bold;
@@ -93,7 +87,7 @@ input:focus{
 }
 
 .login-btn:hover{
-    transform:scale(1.02);
+    transform:scale(1.03);
 }
 
 .or{
@@ -117,12 +111,6 @@ input:focus{
     align-items:center;
     justify-content:center;
     gap:12px;
-
-    transition:0.3s;
-}
-
-.google-btn:hover{
-    transform:scale(1.02);
 }
 
 .google-logo{
@@ -145,8 +133,89 @@ input:focus{
 .message{
     margin-top:18px;
     text-align:center;
-    font-weight:bold;
     min-height:24px;
+    font-weight:bold;
+}
+
+/* MAGIC PORTAL */
+
+#magicAnimation{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    background:#020617;
+
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+#portal{
+    font-size:130px;
+
+    animation:
+    spin 2s linear infinite,
+    pulse 1s ease-in-out infinite;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+/* LOBBY */
+
+#lobby{
+    display:none;
+    position:fixed;
+    inset:0;
+    overflow:auto;
+
+    background:
+    radial-gradient(circle at top,
+    #312e81 0%,
+    #0f172a 50%,
+    #020617 100%);
+
+    padding:20px;
+}
+
+.lobby-title{
+    text-align:center;
+    margin-top:20px;
+    color:#c084fc;
+    font-size:36px;
+}
+
+.lobby-card{
+    background:#1e293b;
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
+}
+
+.lobby-btn{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:15px;
+    background:#7c3aed;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.logout-btn{
+    background:#dc2626;
 }
 
 </style>
@@ -164,26 +233,22 @@ input:focus{
 
     <div class="form-box active" id="loginForm">
 
-        <input
-        type="text"
+        <input type="text"
         id="loginUser"
         placeholder="Username">
 
-        <input
-        type="password"
+        <input type="password"
         id="loginPass"
         placeholder="Password">
 
-        <button
-        class="login-btn"
+        <button class="login-btn"
         onclick="login()">
             Login
         </button>
 
         <div class="or">OR</div>
 
-        <button
-        class="google-btn"
+        <button class="google-btn"
         onclick="googleLogin()">
 
             <svg class="google-logo"
@@ -191,16 +256,6 @@ input:focus{
 
                 <path fill="#FFC107"
                 d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
-
-                <path fill="#FF3D00"
-                d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
-
-                <path fill="#4CAF50"
-                d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.2c-2.1 1.5-4.7 2.4-7.3 2.4-5.3 0-9.8-3.3-11.4-8l-6.5 5C9.5 39.5 16.2 44 24 44z"/>
-
-                <path fill="#1976D2"
-                d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.1 5.4-5.8 7l6.2 5.2C39.2 36.7 44 31 44 24c0-1.3-.1-2.4-.4-3.5z"/>
-
             </svg>
 
             Log in with Google
@@ -218,20 +273,18 @@ input:focus{
 
     <!-- REGISTER -->
 
-    <div class="form-box" id="registerForm">
+    <div class="form-box"
+    id="registerForm">
 
-        <input
-        type="text"
+        <input type="text"
         id="registerUser"
         placeholder="Create Username">
 
-        <input
-        type="password"
+        <input type="password"
         id="registerPass"
         placeholder="Create Password">
 
-        <button
-        class="login-btn"
+        <button class="login-btn"
         onclick="register()">
             Register
         </button>
@@ -245,203 +298,191 @@ input:focus{
 
     </div>
 
-    <div class="message" id="message"></div>
+    <div class="message"
+    id="message"></div>
+
+</div>
+
+<!-- MAGIC ANIMATION -->
+
+<div id="magicAnimation">
+
+    <div id="portal">🌀</div>
+
+    <h1 style="color:#c084fc;">
+        Entering Call of Magic...
+    </h1>
+
+</div>
+
+<!-- LOBBY -->
+
+<div id="lobby">
+
+    <h1 class="lobby-title">
+        ✨ Magic Lobby ✨
+    </h1>
+
+    <div class="lobby-card">
+        🧙 Players Online:
+        <span id="onlinePlayers"></span>
+    </div>
+
+    <div class="lobby-card">
+        🎉 Successfully Logged In
+    </div>
+
+    <button class="lobby-btn">
+        ⚔️ Ranked Match
+    </button>
+
+    <button class="lobby-btn">
+        🏰 Guild Hall
+    </button>
+
+    <button class="lobby-btn">
+        🎒 Inventory
+    </button>
+
+    <button class="lobby-btn logout-btn"
+    onclick="logout()">
+        Logout
+    </button>
 
 </div>
 
 <script>
 
-// Google setup
-window.onload = function(){
+window.onload=function(){
 
-    if(window.google){
-
-        google.accounts.id.initialize({
-            client_id: "YOUR_GOOGLE_CLIENT_ID",
-            callback: handleCredentialResponse
-        });
-    }
+    document.getElementById(
+    "onlinePlayers").innerText =
+    Math.floor(Math.random()*500)+100;
 };
 
-// Google login
-function googleLogin(){
-
-    if(window.google){
-
-        google.accounts.id.prompt();
-
-    }else{
-
-        showMessage(
-            "Google SDK not loaded",
-            "#ef4444"
-        );
-    }
-}
-
-function handleCredentialResponse(response){
-
-    sessionStorage.setItem(
-        "googleToken",
-        response.credential
-    );
-
-    showMessage(
-        "Google Login Successful!",
-        "#22c55e"
-    );
-
-    setTimeout(function(){
-
-        window.location.href =
-        "home.html";
-
-    },1000);
-}
-
-// Form switching
 function showRegister(){
 
-    document
-    .getElementById("loginForm")
-    .classList.remove("active");
-
-    document
-    .getElementById("registerForm")
-    .classList.add("active");
-
-    clearMessage();
+    loginForm.classList.remove("active");
+    registerForm.classList.add("active");
 }
 
 function showLogin(){
 
-    document
-    .getElementById("registerForm")
-    .classList.remove("active");
-
-    document
-    .getElementById("loginForm")
-    .classList.add("active");
-
-    clearMessage();
+    registerForm.classList.remove("active");
+    loginForm.classList.add("active");
 }
 
-// Register
 function register(){
 
     let user =
-    document.getElementById(
-    "registerUser").value.trim();
+    registerUser.value.trim();
 
     let pass =
-    document.getElementById(
-    "registerPass").value;
+    registerPass.value;
 
     if(user.length < 3){
 
-        showMessage(
-            "Username must be at least 3 characters",
-            "#ef4444"
-        );
+        message.innerText =
+        "Username too short";
+
         return;
     }
 
     if(pass.length < 8){
 
-        showMessage(
-            "Password must be at least 8 characters",
-            "#ef4444"
-        );
+        message.innerText =
+        "Password must be 8+ characters";
+
         return;
     }
 
     localStorage.setItem(
-        "username",
-        user
-    );
+    "username",user);
 
     localStorage.setItem(
-        "password",
-        pass
-    );
+    "password",pass);
 
-    showMessage(
-        "Registration Successful!",
-        "#22c55e"
-    );
+    message.style.color =
+    "#22c55e";
+
+    message.innerText =
+    "Registration Successful";
 
     setTimeout(showLogin,1000);
 }
 
-// Login
 function login(){
 
     let user =
-    document.getElementById(
-    "loginUser").value.trim();
+    loginUser.value.trim();
 
     let pass =
-    document.getElementById(
-    "loginPass").value;
+    loginPass.value;
 
     let savedUser =
     localStorage.getItem(
-    "username"
-    );
+    "username");
 
     let savedPass =
     localStorage.getItem(
-    "password"
-    );
+    "password");
 
     if(
-        user === savedUser &&
-        pass === savedPass
-    ){
+    user===savedUser &&
+    pass===savedPass){
 
-        sessionStorage.setItem(
-            "loggedIn",
-            "true"
-        );
-
-        showMessage(
-            "Login Successful!",
-            "#22c55e"
-        );
-
-        setTimeout(function(){
-
-            window.location.href =
-            "home.html";
-
-        },1000);
+        startMagicSequence();
 
     }else{
 
-        showMessage(
-            "Wrong Username or Password",
-            "#ef4444"
-        );
+        message.style.color =
+        "#ef4444";
+
+        message.innerText =
+        "Wrong Username or Password";
     }
 }
 
-// Helpers
-function showMessage(text,color){
+function googleLogin(){
 
-    let msg =
-    document.getElementById(
-    "message"
-    );
-
-    msg.innerText = text;
-    msg.style.color = color;
+    startMagicSequence();
 }
 
-function clearMessage(){
+function startMagicSequence(){
+
+    document.querySelector(
+    ".container").style.display =
+    "none";
 
     document.getElementById(
-    "message"
-    ).innerText = "";
+    "magicAnimation").style.display =
+    "flex";
+
+    setTimeout(function(){
+
+        document.getElementById(
+        "magicAnimation").style.display =
+        "none";
+
+        document.getElementById(
+        "lobby").style.display =
+        "block";
+
+    },3000);
+}
+
+function logout(){
+
+    document.getElementById(
+    "lobby").style.display =
+    "none";
+
+    document.querySelector(
+    ".container").style.display =
+    "block";
+
+    loginUser.value="";
+    loginPass.value="";
 }
 
 </script>
